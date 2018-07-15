@@ -25,6 +25,7 @@ Make sure to have `revtok`, `spacy`, and most importantly, `TorchText` installed
 
 3. Evaluate 
 We're still adding the ability to choose a particular evaluation metric, but for now it performs BLEU. It also saves all the responses and their attentions to be visualized later.
+
 `python evaluate.py --model_src "./model" --attn_dest "./results_with_attentions.json"`
 
 # Visualize the attentions
