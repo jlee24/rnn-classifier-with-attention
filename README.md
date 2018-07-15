@@ -14,17 +14,17 @@ An RNN classifier with attention that takes responses from people as input and o
 1. Aggregate output from HITs
 We have been launching HITs in which people are coming up with clean answers based on an image, question, and the noisy human response. Since we will be using their answers in evaluation, we will stick to training on the question/noisy response pairs in the HIT results. Specify source directory where HIT results are located and destination location for output, which is a dataset in .tsv form.
 
-`python build_dataset.py --hits_src "./results/" --dataset_dest "./data/all.tsv"`
+`python build_dataset.py --hits_src ./results/ --dataset_dest ./data/all.tsv`
 
 2. Train 
 Make sure to have `revtok`, `spacy`, and most importantly, `TorchText` installed based on this great tutorial by Allen Nie <a src="http://anie.me/On-Torchtext/">here</a>. This will train and save the model to 
 
-`python train.py --dataset_src "./data/all.tsv" --model_dest "./model"`
+`python train.py --dataset_src ./data/all.tsv --model_dest ./model`
 
 3. Evaluate 
 We're still adding the ability to choose a particular evaluation metric, but for now it performs BLEU. It also saves all the responses and their attentions to be visualized later.
 
-`python evaluate.py --model_src "./model" --attn_dest "./results_with_attentions.json"`
+`python evaluate.py --model_src ./model --attn_dest ./results_with_attentions.json`
 
 # Visualize the attentions
 Fire up the `Visualize attentions.ipynb` notebook, which will plot the attentions over the response words from `results_with_attentions.json`.
