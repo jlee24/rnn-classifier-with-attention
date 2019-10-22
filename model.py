@@ -7,7 +7,7 @@ RNNS = ['LSTM', 'GRU']
 
 class Encoder(nn.Module):
   def __init__(self, embedding_dim, hidden_dim, nlayers=1, dropout=0.,
-               bidirectional=True, rnn_type='GRU'):
+               bidirectional=False, rnn_type='GRU'):
     super(Encoder, self).__init__()
     self.bidirectional = bidirectional
     assert rnn_type in RNNS, 'Use one of the following: {}'.format(str(RNNS))
@@ -60,10 +60,10 @@ class Classifier(nn.Module):
     if isinstance(hidden, tuple): # LSTM
       hidden = hidden[1] # take the cell state
 
-    if self.encoder.bidirectional: # need to concat the last 2 hidden layers
-      hidden = torch.cat([hidden[-1], hidden[-2]], dim=1)
-    else:
-      hidden = hidden[-1]
+#     if self.encoder.bidirectional: # need to concat the last 2 hidden layers
+#       hidden = torch.cat([hidden[-1], hidden[-2]], dim=1)
+#     else:
+    hidden = hidden[-1]
 
     # max across T?
     # Other options (work worse on a few tests):
